@@ -95,8 +95,11 @@ def play(strategy0, strategy1, goal=GOAL_SCORE):
             score += take_turn(strategy0(score,opponent_score), opponent_score, select_dice(score,opponent_score))
         else: 
             opponent_score += take_turn(strategy1(opponent_score,score), score, select_dice(score,opponent_score))
+        
+        if score == 2*opponent_score or opponent_score == 2*score:
+            score, opponent_score = opponent_score, score
+        
         who = other(who)
-
     return (score, opponent_score)  # You may wish to change this line.
 
 #######################
