@@ -90,8 +90,8 @@ def play(strategy0, strategy1, goal=GOAL_SCORE):
     who = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     score, opponent_score = 0, 0
     "*** YOUR CODE HERE ***"
-    while score and opponent_score < 100:
-        if who:
+    while score < goal and opponent_score < goal:
+        if not who:
             score += take_turn(strategy0(score,opponent_score), opponent_score, select_dice(score,opponent_score))
         else: 
             opponent_score += take_turn(strategy1(opponent_score,score), score, select_dice(score,opponent_score))
