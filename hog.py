@@ -96,7 +96,8 @@ def play(strategy0, strategy1, goal=GOAL_SCORE):
         else: 
             opponent_score += take_turn(strategy1(opponent_score,score), score, select_dice(score,opponent_score))
         who = other(who)
-    return score, opponent_score  # You may wish to change this line.
+
+    return (score, opponent_score)  # You may wish to change this line.
 
 #######################
 # Phase 2: Strategies #
