@@ -182,7 +182,7 @@ def max_scoring_num_rolls(dice=six_sided):
         curr_ave = averaged_roll_dice(num_rolls,dice)
         print(num_rolls, "dice scores", curr_ave, "on average")
         average_scores.append(curr_ave) 
-    return average_scores.index(max(average_scores)) + 1
+    return average_scores.index(max(average_scores)) + 1 #walks the list twice
 
 def winner(strategy0, strategy1):
     """Return 0 if strategy0 wins against strategy1, and 1 otherwise."""
@@ -200,7 +200,7 @@ def average_win_rate(strategy, baseline=always_roll(BASELINE_NUM_ROLLS)):
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
-    if True: # Change to False when done finding max_scoring_num_rolls
+    if False: # Change to False when done finding max_scoring_num_rolls
         six_sided_max = max_scoring_num_rolls(six_sided)
         print('Max scoring num rolls for six-sided dice:', six_sided_max)
         four_sided_max = max_scoring_num_rolls(four_sided)
@@ -209,7 +209,7 @@ def run_experiments():
     if False: # Change to True to test always_roll(8)
         print('always_roll(8) win rate:', average_win_rate(always_roll(8)))
 
-    if False: # Change to True to test bacon_strategy
+    if True: # Change to True to test bacon_strategy
         print('bacon_strategy win rate:', average_win_rate(bacon_strategy))
 
     if False: # Change to True to test swap_strategy
@@ -234,7 +234,10 @@ def bacon_strategy(score, opponent_score):
     0
     """
     "*** YOUR CODE HERE ***"
-    return 5 # Replace this statement
+    if BACON_MARGIN <= 1 + max(opponent_score // 10, opponent_score % 10):
+        return 0
+    else:
+        return BASELINE_NUM_ROLLS
 
 def swap_strategy(score, opponent_score):
     """This strategy rolls 0 dice when it would result in a beneficial swap and
